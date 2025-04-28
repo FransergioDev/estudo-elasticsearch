@@ -1,0 +1,26 @@
+{
+  "name": "estudo-elasticsearch",
+  "version": "1.0.0",
+  "description": "Estudo da ferramenta Elasticsearch",
+  "main": "./src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --trace-warnings --watch ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "elasticsearch",
+    "nodejs",
+    "javascript",
+    "axios",
+    "fastify",
+    "logs"
+  ],
+  "author": "Fransérgio de A. Mota",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "dotenv": "^16.5.0",
+    "fastify": "^5.3.2"
+  }
+}
