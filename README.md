@@ -21,6 +21,10 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 `MEM_LIMIT`
 
+`ELASTIC_USER`
+
+`ELASTIC_HOST`
+
 
 ## Rodando localmente
 

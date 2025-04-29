@@ -1,4 +1,7 @@
+import { configDotenv } from 'dotenv'
 import axios from "axios";
+
+configDotenv()
 
 const elasticClient = axios.create({
     baseURL: process.env.ELASTIC_HOST,
@@ -28,15 +31,31 @@ const logs =  {
     },
     async buscarLogs() {
         try {
-        const response = await elasticClient.get('/logs/_search', {
-            params: {
-            pretty: true,
-            size: 10 // pegar até 10 documentos
-            }
-        });
-        console.log('Logs encontrados:', JSON.stringify(response.data, null, 2));
+            const response = await elasticClient.get('/logs/_search', {
+                params: {
+                    pretty: true,
+                    size: 10 // pegar até 10 documentos
+                }
+            });
+            console.log('Logs encontrados:', JSON.stringify(response.data, null, 2));
+            return response.data;
         } catch (error) {
-        console.error('Erro ao buscar logs:', error.response?.data || error.message);
+            console.error('Erro ao buscar logs:', error.response?.data || error.message);
+            throw  error;
+        }
+    },
+    async buscarErros() {
+        try {
+            const response = await elasticClient.post('/logs/_search', {
+                query: {
+                  match: { level: "error" }
+                }
+              });
+
+            return response.data;
+        } catch (error) {
+            console.error('Erro ao buscar logs:', error.response?.data || error.message);
+            throw  error;
         }
     }
 }
