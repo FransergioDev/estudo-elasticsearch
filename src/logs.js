@@ -6,8 +6,8 @@ configDotenv()
 const elasticClient = axios.create({
     baseURL: process.env.ELASTIC_HOST,
     auth: {
-    username: process.env.ELASTIC_USER,
-    password: process.env.ELASTIC_PASSWORD,
+        username: process.env.ELASTIC_USER,
+        password: process.env.ELASTIC_PASSWORD,
     },
 });
 

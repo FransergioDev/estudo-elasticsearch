@@ -1,5 +1,6 @@
 import Fastify from 'fastify'
 import logs from './logs.js'
+import elastic from './elastic.js'
 import LOGS from './enums/logs.js'
 
 
@@ -10,6 +11,15 @@ const fastify = Fastify({
 
 fastify.get('/', async function handler (request, reply) {
   reply.code(200).send({ message: "Bem vindo! Projeto de estudo do ElasticSearch" })
+})
+
+fastify.get('/client/info', async function handler(request, reply) {
+  try {
+    const dataInfo = await elastic.connect_info();
+    return reply.code(200).send({ message: "Conexão estabelecida com o ElasticSearch", data: dataInfo })
+  } catch (error) {
+    return reply.code(500).send({ message: "Falha ao conectar com o ElasticSearch, através da biblioteca" });
+  }
 })
 
 fastify.post('/test', async function handler (request, reply) {

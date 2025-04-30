@@ -19,9 +19,9 @@
   "author": "Fransérgio de A. Mota",
   "license": "ISC",
   "dependencies": {
-    "@elastic/elasticsearch": "^8.18.2",
     "axios": "^1.9.0",
     "dotenv": "^16.5.0",
+    "es7": "npm:@elastic/elasticsearch@^7.17.14",
     "fastify": "^5.3.2"
   }
 }
