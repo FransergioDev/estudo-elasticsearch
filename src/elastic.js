@@ -20,17 +20,29 @@ const elastic = {
             throw  error;
         }
     },
-    async logger() {
-
+    async logger(level, message) {
+        try {
+            return await client.index({
+                index: 'logs',
+                body: {
+                    message: message ?? 'Log de teste',
+                    level: level,
+                    timestamp: new Date(),
+                }
+            });
+        } catch (error) {
+            console.error('Error:', error.response?.data || error.message);
+            throw  error;
+        }
     },
     async getLogger() {
         try {
             const result = await client.search({
-                index: 'my-index',
+                index: 'logs',
                 body: {
-                query: {
-                    match: { hello: 'world' }
-                }
+                    query: {
+                        match: { level: "error" }
+                    }
                 }
             })
 
@@ -41,7 +53,7 @@ const elastic = {
             throw  error;
         }
           
-    }
+    },
 
 }
 
